@@ -258,6 +258,8 @@ module, and a change that moves a boundary, contract, or decision updates the sp
 You need **Bun** 1.4.4 (the pinned package manager and runtime), **Node.js** ≥ 22.19 (required by the
 in-process `pi` engine), and an authenticated `pi` provider for agent work.
 
+This fork also has an [experimental OpenBSD browser-host setup](openbsd/README.md).
+
 ```bash
 git clone https://github.com/JetBrains/thinkrail.git
 cd thinkrail

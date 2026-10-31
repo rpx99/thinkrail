@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+source_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+runtime=${THINKRAIL_OPENBSD_RUNTIME:-${HOME}/.local/libexec/thinkrail-openbsd}
+if [ ! -x "$runtime/bin/bun" ] || [ ! -f "$source_root/apps/web/dist/index.html" ]; then
+	printf '%s\n' 'Run python3 openbsd/prepare.py in the ThinkRail checkout first.' >&2
+	exit 1
+fi
+export PATH="$runtime/bin:$PATH"
+export THINKRAIL_STATIC_DIR=${THINKRAIL_STATIC_DIR:-$source_root/apps/web/dist}
+exec "$runtime/bin/bun" "$source_root/apps/cli/src/index.ts" "$@"
